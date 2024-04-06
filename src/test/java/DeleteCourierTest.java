@@ -20,7 +20,7 @@ public class DeleteCourierTest extends TestDataAndConstants {
 
     @Test
     @DisplayName("Удаление курьера")
-    public void checkСourierDelete() {
+    public void checkCourierDelete() {
         courierMethods.create(courier);
         id = courierMethods.login(CourierLoginDetails.fromCourier(courier)).path("id").toString();  // id для последующего удаления курьера
         Response deleteResponse = courierMethods.delete(id);
@@ -31,7 +31,7 @@ public class DeleteCourierTest extends TestDataAndConstants {
     @Test
     @DisplayName("Удаление курьера без параметра id")
     @Issue("Код ответа не соответствует документации: ожидаем 400, приходит 404")
-    public void checkСourierDeleteWithoutId() {
+    public void checkCourierDeleteWithoutId() {
         id = "";
         Response deleteResponse = courierMethods.delete(id);
 
@@ -43,7 +43,7 @@ public class DeleteCourierTest extends TestDataAndConstants {
     @Test
     @DisplayName("Удаление курьера с несуществующим id")
     @Issue("Сообщение об ошибке не соответствует документации: ожидаем сообщение без точки")
-    public void checkСourierDeleteWithIncorrectId() {
+    public void checkCourierDeleteWithIncorrectId() {
         id = String.valueOf(0);
         Response deleteResponse = courierMethods.delete(id);
 

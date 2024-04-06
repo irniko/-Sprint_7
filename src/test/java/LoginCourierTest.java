@@ -31,7 +31,7 @@ public class LoginCourierTest extends TestDataAndConstants {
 
     @Test
     @DisplayName("Логин курьера в системе с существующими данными")
-    public void checkСourierLogin() {
+    public void checkCourierLogin() {
         Response loginResponse = courierMethods.login(CourierLoginDetails.fromCourier(courier));
 
         loginResponse.then().statusCode(200).and().assertThat().body("id", notNullValue());
@@ -41,7 +41,7 @@ public class LoginCourierTest extends TestDataAndConstants {
 
     @Test
     @DisplayName("Логин курьера в системе c неверным паролем")
-    public void checkСourierLoginWithIncorrectPassword() {
+    public void checkCourierLoginWithIncorrectPassword() {
         id = courierMethods.login(CourierLoginDetails.fromCourier(courier)).path("id").toString(); // id для последующего удаления курьера
         Response loginResponse = courierMethods.login(CourierLoginDetails.fromCourier(courierSameLoginDiffPasswd));
 
@@ -52,7 +52,7 @@ public class LoginCourierTest extends TestDataAndConstants {
 
     @Test
     @DisplayName("Логин курьера в системе c неверным логином")
-    public void checkСourierLoginWithIncorrectLogin() {
+    public void checkCourierLoginWithIncorrectLogin() {
         id = courierMethods.login(CourierLoginDetails.fromCourier(courier)).path("id").toString(); // id для последующего удаления курьера
         Response loginResponse = courierMethods.login(CourierLoginDetails.fromCourier(courierDiffLoginSamePasswd));
 
@@ -63,7 +63,7 @@ public class LoginCourierTest extends TestDataAndConstants {
 
     @Test
     @DisplayName("Логин курьера в системе без поля 'login'")
-    public void checkСourierLoginWihoutLogin() {
+    public void checkCourierLoginWithoutLogin() {
         id = courierMethods.login(CourierLoginDetails.fromCourier(courier)).path("id").toString(); // id для последующего удаления курьера
         courier.setLogin(null);
         Allure.parameter("Login ", courier.getLogin());
@@ -78,7 +78,7 @@ public class LoginCourierTest extends TestDataAndConstants {
     @Test
     @DisplayName("Логин курьера в системе без поля 'password'")
     @Issue("Код ответа не соответствует документации: ожидаем 400, приходит 504")
-    public void checkСourierLoginWihoutPassword() {
+    public void checkCourierLoginWithoutPassword() {
         id = courierMethods.login(CourierLoginDetails.fromCourier(courier)).path("id").toString();
         courier.setPassword(null);
         Allure.parameter("Login ", courier.getLogin());

@@ -27,7 +27,7 @@ public class CreateCourierTest extends TestDataAndConstants {
 
     @Test
     @DisplayName("Создание учетной записи курьера")
-    public void checkСourierСreation() {
+    public void checkCourierCreation() {
         Response response = courierMethods.create(courier);
 
         response.then().statusCode(201).and().assertThat().body("ok", equalTo(true));
@@ -39,7 +39,7 @@ public class CreateCourierTest extends TestDataAndConstants {
     @Test
     @DisplayName("Создание двух курьеров с одинаковыми данными (дубликат)")
     @Issue("Сообщение об ошибке не соответствует документации")
-    public void checkСourierСreationDouble() {
+    public void checkCourierCreationDouble() {
         courierMethods.create(courier);
         id = courierMethods.login(CourierLoginDetails.fromCourier(courier)).path("id").toString(); // id для последующего удаления курьера
         Response response = courierMethods.create(courier); // создание курьера с теми же данными
@@ -51,7 +51,7 @@ public class CreateCourierTest extends TestDataAndConstants {
 
     @Test
     @DisplayName("Создание двух курьеров с одинаковым полем 'login'")
-    public void checkСourierСreationWithSameLogin() {
+    public void checkCourierCreationWithSameLogin() {
         courierMethods.create(courier);
         id = courierMethods.login(CourierLoginDetails.fromCourier(courier)).path("id").toString(); // id для последующего удаления курьера
         Response response = courierMethods.create(courierSameLoginDiffPasswd); // создание курьера с тем же логином
@@ -64,7 +64,7 @@ public class CreateCourierTest extends TestDataAndConstants {
 
     @Test
     @DisplayName("Создание курьера без поля 'login'")
-    public void checkСourierСreationWithoutLogin() {
+    public void checkCourierCreationWithoutLogin() {
         courier.setLogin(null);
         Allure.parameter("Login ", courier.getLogin());
         Allure.parameter("Password ", courier.getPassword());
@@ -78,7 +78,7 @@ public class CreateCourierTest extends TestDataAndConstants {
 
     @Test
     @DisplayName("Создание курьера без поля 'password'")
-    public void checkСourierСreationWithoutPassword() {
+    public void checkCourierCreationWithoutPassword() {
         courier.setPassword(null);
         Allure.parameter("Login ", courier.getLogin());
         Allure.parameter("Password ", courier.getPassword());
@@ -92,7 +92,7 @@ public class CreateCourierTest extends TestDataAndConstants {
 
     @Test
     @DisplayName("Создание курьера без поля 'firstName'")
-    public void checkСourierСreationWithoutFirstName() {
+    public void checkCourierCreationWithoutFirstName() {
         courier.setFirstName(null);
         Allure.parameter("Login ", courier.getLogin());
         Allure.parameter("Password ", courier.getPassword());
