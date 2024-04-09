@@ -1,5 +1,4 @@
 public class CourierLoginDetails {
-
     private String login;
     private String password;
 

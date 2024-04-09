@@ -87,7 +87,7 @@ public class LoginCourierTest extends TestDataAndConstants {
 
         String expectedMessage = LOGIN_400_BAD_REQUEST;
         loginResponse.then().statusCode(400).and().assertThat().body("message", equalTo(expectedMessage));
-        Allure.step("Получение ожидаемого результата: '" + expectedMessage + "'");
+        Allure.step("Получение ожидаемогo результата: '" + expectedMessage + "'");
     }
 
 }
